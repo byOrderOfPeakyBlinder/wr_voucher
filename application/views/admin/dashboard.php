@@ -6,7 +6,7 @@
     <hr>
     <div class="card-header bg-white">
         <h5 class="text-black op-7 mb-2"><img src="assets/img/wllogo.png" width="37px"> Hello, <b class="text-info">
-                <?=$user['username'] ?>
+                <!-- <?=$user['username'] ?> -->
             </b>
         </h5>
         <h4 class="h5 align-middle m-0 font-weight-bold text-danger">
