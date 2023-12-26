@@ -27,7 +27,7 @@ class Auth extends CI_Controller
     }
 
     private function _login()
-{
+    {
   $username = $this->input->post('username');
   $password = $this->input->post('password');
 
@@ -50,20 +50,26 @@ class Auth extends CI_Controller
 
        } else if ($user['role'] == 2) {
            $datalgn['username2'] = $data['username'];
-           $datalgn['role'] = "Owner";
+           $datalgn['role'] = "Kasir";
            $this->session->set_userdata($datalgn);
            redirect('Kasir');
 
        } 
-   } else {
-    $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert"> Password Anda Salah </div>');
-    redirect('auth');
-}
-} else { 
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert"> Password Anda Salah </div>');
+            redirect('auth');
+            }
+            } else { 
 
- $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert"> Username Tidak Terdaftar </div>');
- redirect('auth');
-}
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert"> Username Tidak Terdaftar </div>');
+            redirect('auth');
+            }
+    }
+    public function logout($data)
+{
+    $this->session->unset_userdata($data);
+    $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert"> Berhasil Keluar </div>');
+    redirect('auth');
 }
     public function registrasi()
     {

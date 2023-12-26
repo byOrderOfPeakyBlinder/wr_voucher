@@ -15,6 +15,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <!-- Custom styles for this template-->
     <link href="<?=  base_url('assets'); ?>/css/sb-admin-2.min.css" rel="stylesheet">
@@ -43,12 +44,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('Admin');?>">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <!-- <i class="fas fa-car"></i> -->
-                    <img height="50px" src="<?= base_url('assets/img/logo.png') ?>" alt="">
-                </div>
-                <div class="sidebar-brand-text mx-3">Wahyu Redjo </div>
+                <!-- <i class="fas fa-car"></i> -->
+                <img height="50px" src="<?= base_url('assets/img/wr.png') ?>">
+                <!-- <div class="sidebar-brand-text mx-3">Wahyu Redjo </div> -->
             </a>
+
             <!-- Divider -->
             <hr class="sidebar-divider my-6">
 
@@ -59,20 +59,24 @@
                     <span>Voucher</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('Admin/kasir'); ?>">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Data Kasir </span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('Admin/cabang'); ?>">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Data Cabang</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('Admin/data_customer'); ?>">
                     <i class="fas fa-chart-bar"></i>
                     <span>Data Customer</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/data_transaksi'); ?>">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Data Transaksi</span></a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('auth/logout'); ?> ">
                     <i style="font-size:20px" class="fas fa-running text "></i>
-
                     <span>Log out</span></a>
             </li>
 
@@ -133,8 +137,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['username'];?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $info?></span>
                                 <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/')?>">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -160,3 +163,4 @@
                 <!--Notif-->
                 <div class="er-data" data-erdata="<?php echo $this->session->flashdata('msgeror'); ?>"></div>
                 <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('msg'); ?>"></div>
+                <div class="info-data" data-infodata="<?php echo $this->session->flashdata('info'); ?>"></div>
