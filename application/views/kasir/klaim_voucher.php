@@ -2,7 +2,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Claim Voucher</h1>
+        <h1 class="h3 mb-0 text-gray-800">Klaim Voucher</h1>
     </div>
 
     <!-- content tambah promo -->
@@ -19,7 +19,9 @@
                 </div>
                 <div class="position-relative row form-group"><label for="exampleEmail"
                         class="col-sm-2 col-form-label">Nomor Handphone</label>
-                    <div class="col-sm-10"><input name="no_hp" placeholder="" type="text" class="form-control" required>
+
+                    <div class="col-sm-10"><input name="no_hp" inputmode="numeric" maxlength="15"
+                            pattern="[0-9\s]{5,15}" placeholder="" type=" text" class="form-control" required>
                     </div>
                 </div>
                 <div class="position-relative row form-group"><label for="exampleEmail"
@@ -48,7 +50,7 @@
                 </div>
                 <div class="position-relative row form-check">
                     <div class="col-sm-10 offset-sm-2">
-                        <button class="btn btn-secondary">Submit</button>
+                        <button class="btn btn-primary">Submit</button>
                     </div>
                 </div>
                 <?php form_close(); ?>

@@ -13,8 +13,10 @@
                             <th>Kode Voucher</th>
                             <th>Nominal</th>
                             <th>Nama Customer</th>
+                            <th>No Telepon</th>
                             <th>Alamat</th>
                             <th>Nota</th>
+                            <th>Kasir - Cabang</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,12 +30,14 @@
                             <td><?= $rwt->kode_voucher?></td>
                             <td>Rp. <?= number_format($rwt->nominal,0)?></td>
                             <td><?= $rwt->nama?></td>
+                            <td><?= $rwt->no_hp?></td>
                             <td><?= $rwt->alamat?></td>
                             <td>
                                 <a type="button" data-toggle="modal" data-target="#modal-view<?=$no?>">
                                     <img height="100px" src="<?= base_url('assets/img/nota/').$rwt->foto?>" alt="">
                                 </a>
                             </td>
+                            <td><?= $rwt->username.' - '.$rwt->cabang.' ( '.$rwt->kode_cabang.' )'?></td>
 
                         </tr>
                         <!-- Modal view -->

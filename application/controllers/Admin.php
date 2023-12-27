@@ -10,6 +10,11 @@ class Admin extends CI_Controller
         $this->load->model('Admin_model');
         $this->load->library('form_validation');
         date_default_timezone_set('Asia/Jakarta');
+        if ($this->session->userdata('username1') == null) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-warning" role="alert"> Sesi Anda Berakhir , Silahkan Masuk </div>');
+            redirect('auth');
+            die;
+        }
 
     }
    
@@ -17,6 +22,7 @@ class Admin extends CI_Controller
     {
         $array  = array(
             'info' => $this->session->userdata('role'),
+            'nama' => $this->session->userdata('username1'),
             'title' => 'WAHYU REDJO'
             // 'data_voucher' => $voucher,
         );
@@ -217,4 +223,19 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('msg', 'Data Cabang Berhasil Di Hapus');
         redirect('admin/cabang');
     }
+    public function data_customer()
+  {
+    $voucher = $this->Admin_model->get_klaim_voucher();
+
+    $array  = array(
+      'info' => $this->session->userdata('role'),
+      'title' => 'WAHYU REDJO',
+      'riwayat'=>$voucher
+    );
+    
+    $this->load->view('admin/header', $array );
+    $this->load->view('admin/data_customer');
+    $this->load->view('admin/footer' );
+  }
+
 }

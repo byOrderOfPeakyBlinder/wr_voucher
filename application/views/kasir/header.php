@@ -45,7 +45,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('Admin');?>">
                 <!-- <i class="fas fa-car"></i> -->
-                <img height="50px" src="<?= base_url('assets/img/wr.png') ?>">
+                <img height="40px" src="<?= base_url('assets/img/logo.png') ?>">
                 <!-- <div class="sidebar-brand-text mx-3">Wahyu Redjo </div> -->
             </a>
             <!-- Divider -->
@@ -122,7 +122,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $info?></span>
-                                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/')?>">
+                                <img class="img-profile rounded-circle"
+                                    src="<?= base_url('assets/img/')?>undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

@@ -50,7 +50,7 @@ class Auth extends CI_Controller
 
        } else if ($user['role'] == 2) {
            $datalgn['username2'] = $data['username'];
-           $datalgn['role'] = "Kasir";
+           $datalgn['role2'] = "Kasir";
            $this->session->set_userdata($datalgn);
            redirect('Kasir');
 

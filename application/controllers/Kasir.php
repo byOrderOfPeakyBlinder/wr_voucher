@@ -22,7 +22,8 @@ class Kasir extends CI_Controller
   public function index()
   {
     $array  = array(
-      'info' => $this->session->userdata('role'),
+      'info' => $this->session->userdata('role2'),
+      'nama' => $this->session->userdata('username2'),
       'title' => 'WAHYU REDJO',
     );
     
@@ -33,7 +34,7 @@ class Kasir extends CI_Controller
   public function klaim_voucher()
   {
     $array  = array(
-      'info' => $this->session->userdata('role'),
+      'info' => $this->session->userdata('role2'),
       'title' => 'WAHYU REDJO',
     );
     $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
@@ -42,6 +43,7 @@ class Kasir extends CI_Controller
       $this->load->view('kasir/klaim_voucher');
       $this->load->view('kasir/footer' );
     }else{
+      $user = $this->db->get_where('user', ['username' => $this->session->userdata('username2')])->row_array();
       $kode_voucher=$this->input->post('kode_voucher');
       $tanggal_klaim=strtotime($this->input->post('tanggal'));
       $voucher = $this->db->get_where('voucher', ['kode_voucher' => $kode_voucher])->row_array();
@@ -50,9 +52,11 @@ class Kasir extends CI_Controller
         redirect('kasir/klaim_voucher');
       
       }else if($voucher['status']==1){
-        $this->session->set_flashdata('info', 'Voucher Sudah Terpakai, Gunakan Voucher Lain');
+        $cek_cabang= $this->Kasir_model->cek_klaim_voucher($kode_voucher);
+        $detail_cabang='( '.$cek_cabang['kode_cabang'].' ) '.$cek_cabang['cabang'];
+        echo 'Voucher Sudah Terpakai di cabang '.$detail_cabang.' , Gunakan Voucher Lain';
+        $this->session->set_flashdata('info', 'Voucher Sudah Terpakai di cabang '.$detail_cabang.' , Gunakan Voucher Lain');
         redirect('kasir/klaim_voucher');
-      
       }else if($tanggal_klaim > $voucher['expired']){
         $this->session->set_flashdata('msgeror', 'Voucher Sudah Kadaluarsa, Silahkan Cek Lagi');
       redirect('kasir/klaim_voucher');
@@ -74,10 +78,12 @@ class Kasir extends CI_Controller
         }
         $data = array(
           'nama'=>$this->input->post('nama'),
+          'no_hp'=>$this->input->post('no_hp'),
           'alamat'=>$this->input->post('alamat'),
           'tanggal'=>strtotime($this->input->post('tanggal')),
           'foto'=>$foto,
           'kode_voucher'=>$this->input->post('kode_voucher'),
+          'id_kasir'=>$user['id'],
         );
         $this->Kasir_model->klaim_voucher($data);
         //merubah status voucher menjadi terpakai
@@ -94,10 +100,12 @@ class Kasir extends CI_Controller
   }
   public function riwayat_klaim()
   {
-    $voucher = $this->Kasir_model->get_klaim_voucher();
+    $user = $this->db->get_where('user', ['username' => $this->session->userdata('username2')])->row_array();
+
+    $voucher = $this->Kasir_model->get_klaim_voucher($user['id']);
 
     $array  = array(
-      'info' => $this->session->userdata('role'),
+      'info' => $this->session->userdata('role2'),
       'title' => 'WAHYU REDJO',
       'riwayat'=>$voucher
     );

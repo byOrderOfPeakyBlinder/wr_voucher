@@ -79,6 +79,16 @@ class Admin_model extends CI_Model
         $this->db->where('kode_cabang', $id);
         $this->db->delete('data_cabang');
     }
+    public function get_klaim_voucher()
+    {
+        $this->db->select('klaim_voucher.*,voucher.nominal,user.username,data_cabang.*');
+         $this->db->from('klaim_voucher');
+         $this->db->join('voucher', 'klaim_voucher.kode_voucher = voucher.kode_voucher');
+         $this->db->join('user', 'klaim_voucher.id_kasir = user.id');
+         $this->db->join('data_cabang', 'user.kode_cabang = data_cabang.kode_cabang');
+        $query = $this->db->get();
+        return $query->result();
+    }
     // function get_data_customer()
     // {
     //     $this->db->select('*');

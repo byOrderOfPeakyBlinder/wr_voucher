@@ -6,11 +6,11 @@
     <hr>
     <div class="card-header bg-white">
         <h5 class="text-black op-7 mb-2"><img src="assets/img/wllogo.png" width="37px"> Hello, <b class="text-info">
-                <!-- <?=$user['username'] ?> -->
+                <?=$nama?>
             </b>
         </h5>
         <h4 class="h5 align-middle m-0 font-weight-bold text-danger">
-            <marquee>Welcome To Wahyu Redjo</marquee>
+            <marquee>Selamat Datang di Toko Mas Wahyu Redjo</marquee>
         </h4>
     </div>
     <br>

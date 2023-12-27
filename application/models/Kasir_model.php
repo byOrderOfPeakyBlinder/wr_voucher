@@ -18,6 +18,18 @@ class Kasir_model extends CI_Model {
   {
     // 
   }
+  //cekvoucer
+  public function cek_klaim_voucher($id)
+  {
+      $this->db->select('klaim_voucher.*,voucher.nominal,user.username,data_cabang.*');
+       $this->db->from('klaim_voucher');
+      $this->db->where('klaim_voucher.kode_voucher', $id);
+       $this->db->join('voucher', 'klaim_voucher.kode_voucher = voucher.kode_voucher');
+       $this->db->join('user', 'klaim_voucher.id_kasir = user.id');
+       $this->db->join('data_cabang', 'user.kode_cabang = data_cabang.kode_cabang');
+      $query = $this->db->get();
+      return $query->row_array();
+  }
   function klaim_voucher($Data)
   {
       $this->db->insert('klaim_voucher', $Data);
@@ -29,14 +41,17 @@ class Kasir_model extends CI_Model {
       $this->db->update('voucher');
   }
   //riwayat klaim
-  public function get_klaim_voucher()
-    {
-        $this->db->select('*');
-         $this->db->from('klaim_voucher');
-         $this->db->join('voucher', 'klaim_voucher.kode_voucher = voucher.kode_voucher');
-        $query = $this->db->get();
-        return $query->result();
-    }
+  public function get_klaim_voucher($id)
+  {
+      $this->db->select('klaim_voucher.*,voucher.nominal,user.username,data_cabang.*');
+       $this->db->from('klaim_voucher');
+      $this->db->where('klaim_voucher.id_kasir', $id);
+       $this->db->join('voucher', 'klaim_voucher.kode_voucher = voucher.kode_voucher');
+       $this->db->join('user', 'klaim_voucher.id_kasir = user.id');
+       $this->db->join('data_cabang', 'user.kode_cabang = data_cabang.kode_cabang');
+      $query = $this->db->get();
+      return $query->result();
+  }
   // ------------------------------------------------------------------------
 
 }

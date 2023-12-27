@@ -2,7 +2,7 @@
  <footer class="sticky-footer bg-light">
      <div class="container my-auto">
          <div class="copyright text-center my-auto">
-             <span>Copyright &copy; Aplikasi Wildan Laundry &bull; 2023 &bull; by "_" </span>
+             <span>Copyright &copy; Toko Mas Wahyu Redjo &bull; 2023 &bull; by "_" </span>
          </div>
      </div>
  </footer>
